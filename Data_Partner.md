@@ -10,11 +10,13 @@
 
 <table>
 <thead>
-<tr><td>Code</td></tr>
+<tr><td>Code</tr>
 </thead>
 <tbody>
 <tr>
+    
 <td>
+    
 ```sql
 SELECT c.carrier_name,
     COUNT(dz.delivery_zone_id) AS zones_count
@@ -24,8 +26,9 @@ GROUP BY c.carrier_id, c.carrier_name
 ORDER BY zones_count DESC
 LIMIT 1;
 ```
-<td>   
+    
 </tr>
+
 </tbody>
 </table>
 
