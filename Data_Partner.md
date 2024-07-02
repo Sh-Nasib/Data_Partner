@@ -28,7 +28,6 @@ LIMIT 1;
 ```
     
 </tr>
-
 </tbody>
 </table>
 
@@ -81,7 +80,6 @@ LIMIT 1;
 ```
     
 </tr>
-
 </tbody>
 </table>
 
@@ -203,6 +201,54 @@ def get_air_temperature():
 Станция S44: Температура воздуха составляет 28.8°C.
 Станция S104: Температура воздуха составляет 28.3°C.
 </td>
+</tr>
+</tbody>
+</table>
+
+______________________________________________________________
+
+<table>
+<thead>
+<tr><td>Code</tr>
+</thead>
+<tbody>
+<tr>
+    
+<td>
+    
+```python
+import requests
+
+def get_air_temperature():
+    url = "https://api.data.gov.sg/v1/environment/air-temperature"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        if data and 'items' in data and data['items']:
+            temperature_records = data['items'][0]['readings']
+            for record in temperature_records:
+                station_id = record['station_id']
+                temperature = record['value']
+                print(f"Станция {station_id}: Температура воздуха составляет {temperature}°C.")
+        else:
+            print("Данные о температуре не найдены.")
+    else:
+        print(f"Ошибка получения данных: {response.status_code}")
+```
+    
+</tr>
+</tbody>
+<thead>
+<tr><td>Code</tr>
+</thead>
+<tbody>
+<tr>  
+<td>
+Станция S50: Температура воздуха составляет 28.1°C.
+Станция S107: Температура воздуха составляет 29.3°C.
+Станция S43: Температура воздуха составляет 29°C.
+Станция S44: Температура воздуха составляет 28.8°C.
+Станция S104: Температура воздуха составляет 28.3°C. 
 </tr>
 </tbody>
 </table>
